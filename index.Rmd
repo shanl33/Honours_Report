@@ -99,7 +99,7 @@ include_graphics("files/one2one2.jpg", auto_pdf=F)
 
 Instead of linking by case, a categorical variable can also be used to define the linking rule. This results in all members of the same level being highlighted, once one member is brushed [@Cook]. Gender is used as the linking rule in Figure \@ref(fig:catbrush) so that brushing one female crab links to highlighting points for all female crabs in the same plot.
 
-```{r catbrush, fig.cap="Categorical brushing where brushing one female crab highlights all points representing female crabs.", out.width="700px"}
+```{r catbrush, fig.cap="Categorical brushing where brushing one female crab highlights all points representing female crabs.", out.width="400px"}
 include_graphics("files/catbrush.jpg", auto_pdf=F)
 ```
 
