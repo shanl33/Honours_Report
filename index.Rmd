@@ -165,7 +165,7 @@ Subset selection involves using only a portion of the data for visualisation and
 
 The **crabs** dataset was examined by @Mass using principal component analysis (PCA) on the log values of the five physical measurements. PCA reveals interesting multivariate structures by finding projections of the data that show maximal variability [@Mass]. Hence principal components are commonly used to provide a starting basis for interactive tours [@tourr]. 
 
-Figure \@ref(fig:tour_init) shows a two-dimensional guided tour of the five dimensional space, spanned by the real-valued variables of the **crabs** dataset. On the right of the tour plot, line segments are used to represent the orientation of the projection with respect to the original variables. The R package **tourr**, enables projection pursuit indices and geodesic interpolation between projections, to be applied. The interpolation between projections is a stochastic process, hence the views observed will vary between tours [@tourr]. The second and third principal components of the log values were identified by @Mass as almost separating the four sex-species crab classes. The projection defined by the principal components indicated a sparse distribution at the centre, hence the choice in using the "holes" projection pursuit index. This projection of the data was used as the starting basis for the guided tour to further explore the "neighbourhood" identified by @Mass.
+Figure \@ref(fig:tourinit) shows a two-dimensional guided tour of the five dimensional space, spanned by the real-valued variables of the **crabs** dataset. On the right of the tour plot, line segments are used to represent the orientation of the projection with respect to the original variables. The R package **tourr**, enables projection pursuit indices and geodesic interpolation between projections, to be applied. The interpolation between projections is a stochastic process, hence the views observed will vary between tours [@tourr]. The second and third principal components of the log values were identified by @Mass as almost separating the four sex-species crab classes. The projection defined by the principal components indicated a sparse distribution at the centre, hence the choice in using the "holes" projection pursuit index. This projection of the data was used as the starting basis for the guided tour to further explore the "neighbourhood" identified by @Mass.
 
 ```{r, eval=FALSE}
 # Code in separate R file
@@ -175,19 +175,19 @@ crabLog <- cbind(crabs[1:2], log(crabs[3:7]))
 guidedTour_app(crabLog, index="holes", PC=TRUE)
 ```
 
-```{r tour_init, fig.cap="A 2D guided tour of the five-dimensional space spanned by the real-valued variables of the crabs dataset."}
+```{r tourinit, fig.cap="A 2D guided tour of the five-dimensional space spanned by the real-valued variables of the crabs dataset."}
 # Replace with crosstalk + plotly only interactive so no need for static
 include_graphics("files/tour.jpg", auto_pdf=F)
 ```
 
-A slight improvement on separating the four sex-species crab classes is possible. Figure \@ref(fig:tour_brush) shows a projection from the tour with persistent one-to-one linked brushing applied.
+A slight improvement on separating the four sex-species crab classes is possible. Figure \@ref(fig:tourbrush) shows a projection from the tour with persistent one-to-one linked brushing applied.
 
-```{r tour_brush, fig.cap="A projection from a guided tour with persistent brushing applied across projections."}
+```{r tourbrush, fig.cap="A projection from a guided tour with persistent brushing applied across projections."}
 # Replace with crosstalk + plotly only interactive so no need for static
 include_graphics("files/tour_brush.jpg", auto_pdf=F)
 ```
 
-@Cook demonstrate how persistent linked brushing between projections of a tour, enables graphical approaches towards supervised classification and cluster analysis. Although the animation required for tours can be achieved in **shiny**, a "spin and brush" technique cannot be facilitated due to each projection being independently rendered. In Figure \@ref(fig:tour_init) it is possible to pause the animation, brush the tour plot and then continue the tour, since **crosstalk** was used to provide the linking between the data for the projections.
+@Cook demonstrate how persistent linked brushing between projections of a tour, enables graphical approaches towards supervised classification and cluster analysis. Although the animation required for tours can be achieved in **shiny**, a "spin and brush" technique cannot be facilitated due to each projection being independently rendered. In Figure \@ref(fig:tourinit) it is possible to pause the animation, brush the tour plot and then continue the tour, since **crosstalk** was used to provide the linking between the data for the projections.
 
 # A survey of software tools {#software}
 The demonstrations of interactive techniques in Section \@ref(techniques), show that a code-based approach towards achieving the scope of techniques possible in **GGobi**, requires the use of more than one software. This section compares the ease of application, development progress and coverage of interactive techniques, for a range of open-source, code-based software tools. A set of key software tools will be identified and discussed in more detail.
