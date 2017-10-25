@@ -601,18 +601,18 @@ The projection captured in Figure \@ref(fig:nceaTour) is from the tour that uses
 include_graphics("files/ncea_Tour.jpg", auto_pdf=F)
 ```
 
-The tour plot in Figure \@ref(fig:nceaTour) shows a projection with a hole separating the data. Brushing the group of points below the hole links with the plots in the second row. This group of schools generally have above average achievement rates across all four qualification levels, with the exception of one school. The inclusion of this school suggests that one of the features that relates these schools together is their relatively high achievement rates in UE, compared to other schools. Apart from two schools all of these schools are from decile seven and above. All decile ten schools are included in this group.
+The tour plot in Figure \@ref(fig:nceaTour) shows a projection with a hole separating the data. Brushing the group of separated by the hole links with the plots in the second row, as shown in Figure \@ref(fig:nceaTourUE). This group of schools generally have above average achievement rates across all four qualification levels, with the exception of one school. The inclusion of this school suggests that one of the features that relates these schools together is their relatively high achievement rates in UE, compared to other schools. Apart from two schools all of these schools are from decile seven and above. All decile ten schools are included in this group.
 
 ```{block, type="boxed", echo=TRUE}
 Interactive techniques like linked brushing and tours, allow multiple views of the data to be viewed at the same time. Consequently leading to a more thorough exploration of data structures.
 ```
 
-```{r nceaTour, fig.cap="Guided tour of achievement rates for Auckland schools. See <https://shanl33.shinyapps.io/nceaTour/>.", out.width="500px"}
+```{r nceaTourUE, fig.cap="Guided tour of achievement rates for Auckland schools. See <https://shanl33.shinyapps.io/nceaTour/>.", out.width="500px"}
 # See NCEAsize.R for code for Shiny App
 include_graphics("files/ncea_TourUE.jpg", auto_pdf=F)
 ```
 
-The PCP in Figure \@ref(fig:nceaTour) reuses the code from Figure \@ref(fig:pcp_scale). Similarly, the tour plot builds on the work and effort spent creating Figure \@ref(fig:tourinit). For complex interactive techniques like tours, it is particularly important to be able to "recycle" the code, otherwise it becomes to costly, in terms of time and effort, to apply in exploratory data analysis.
+The PCP in Figure \@ref(fig:nceaTourUE) reuses the code from Figure \@ref(fig:pcp_scale). Similarly, the tour plot builds on the work and effort spent creating Figure \@ref(fig:tourinit). For complex interactive techniques like tours, it is particularly important to be able to "recycle" the code, otherwise it becomes to costly, in terms of time and effort, to apply in exploratory data analysis.
 
 ```{block, type="boxed", echo=TRUE}
 A code-based approach towards creating interactive visualisations allow components to be reused and easily extended for new expolorations. This makes the learning curve and initial investment of time and effort worthwhile.
