@@ -410,11 +410,11 @@ guidedTour_app <- function(dataset=akl[-1], index="cmass", factors=1, PC=TRUE, .
   
   output$scatter <- renderPlot({
     ggmatrix(scatt_list, P, P, byrow = F, showAxisPlotLabels = F,
-             title="Final tour projection and axes plots")
+             title="Final tour projection and axes positions")
   })
   
   }
   shinyApp(ui, server)
 }
 
-guidedTour_app()
+guidedTour_app(index="holes")

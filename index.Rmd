@@ -42,21 +42,19 @@ library(tourr)
 
 @EDA famously stated "The greatest value of a picture is when it **forces** us to notice what we never expected to see." (p vi).
 
-Data visualisation uses graphics to gain further insight during data exploration and confirmatory statistical analysis [@Cook].  In addition, *interactive* data visualisation allows the user to interact with graphical features in order to achieve fast and flexible analysis [@GDA]. However @GDA highlights one of the challenges of interactive data visualisation is in documenting the interactions applied during analysis. The development of open-source, code-based software, such as R packages, provides possible solutions to address this issue. Hence it is of interest to research how effective the current software tools are in implementing interactive techniques to support the data analysis cycle. This helps to establish a focal set of tools and techniques for teaching interactive data visualisation. 
+Data visualisation uses graphics to gain further insight during data exploration and confirmatory statistical analysis [@Cook].  In addition, *interactive* data visualisation allows the user to interact with graphical features in order to achieve fast and flexible analysis [@GDA]. However @GDA highlights one of the challenges of interactive data visualisation is in documenting the interactions applied during analysis. The development of open-source, code-based software, such as R packages, provides possible solutions to address this issue. Hence it is of interest to research how effective these software tools are in implementing interactive techniques to support the data analysis cycle.
 
-The first stage of this research entailed a survey on interactive techniques and the range of open-source software currently available. A literature review was undertaken to examine applications of interactive techniques and identify commonly used techniques that should be prioritised when teaching interactive data visualisation. The survey of current software tools was then aimed towards evaluating their coverage of these interactive techniques and the ease with which they could achieve the interactivity. A set of software tools was identified and used to explore the role of interactive data visualisation in the data analysis cycle. This second stage of research applied interactive techniques in exploratory data analysis of a dataset not previously examined in the literature.
+The first stage of this research involved a survey of the techniques and open-source software currently available for interactive data visualisation. A literature review helped to identify commonly used interactive techniques. The software tools were then evaluated against these techniques, in terms of coverage and ease of application. A focal set of software tools was estabilished and used to explore the role of interactive data visualisation in the data analysis cycle. This second stage of research applied interactive techniques in exploratory data analysis of a dataset not previously examined in the literature.
 
 ## Findings
 
-Different types of linked brushing, identification, subset selection and tours, were found to be commonly used techniques in interactive data visualisation. Utilising the `R` packages **plotly** and **crosstalk** together, or in combination with **shiny** software, provided a code-based, open-source approach towards applying these interactive techniques. Awareness towards the limitations and code efficiency of each software, enabled the efficient application of interactive techniques to exploratory data analysis of a "real" dataset. 
+Different types of linked brushing, identification, subset selection and tours, were found to be commonly used techniques in interactive data visualisation. Utilising the R packages **plotly** and **crosstalk** together, or in combination with **shiny** software, provided a code-based, open-source approach towards applying these interactive techniques. Awareness towards the limitations and code efficiency of each software, enabled the efficient application of interactive techniques to exploratory data analysis of a "real" dataset. 
 
-Applying interactive techniques to data analysis resulted in further insight into underlying multivariate structures. For example tooltip identification of outliers and linked brushing of individual and groups of observations, capitalised on the multivariate views offered by parallel coordinates plots. Furthermore interactive filtering helped to reduce problems caused by overplotting and allowed the effect of sample size on analysis to be explored.
-
-Interactive techniques also helped to develop a deeper understanding of abstract multivariate data analysis methods. Linked brushing between the visual projections of a guided tour and its respective projection pursuit index, prompted further exploration of the multidimensional data space.
+Applying interactive techniques to data analysis resulted in further insight into underlying multivariate structures. For example tooltip identification of outliers and linked brushing of individual and groups of observations, capitalised on the multivariate views offered by parallel coordinates plots. Furthermore interactive subset selection helped to reduce problems caused by overplotting and allowed the effect of sample size on analysis to be explored.
 
 The benefits of utilising interactivity in data analysis outweighed the effort required to implement the interactive techniques. Once sufficient mastery of software was acquired, the interactive techniques could be applied to new analysis in novel ways. The ease of applying interactive techniques to gain deeper insight in analysis and a thorough understanding of underlying processes, justifies teaching interactive data visualisation to graduate students.
 
-The following sections examine the different types of interactive techniques and software tools available.  
+Section \@ref(techniques) introduces a set of techniques commonly used in literature to demonstrate interactive data visualisation. A range of software tools will then be compared in Section \ref(software), leading to a further examination of the R packages **plotly**, **crosstalk** and **shiny**. Finally, Section \@ref(application) demonstrates how interactive techniques can be applied to exploratory data analysis, using results from the National Certificate of Educational Achievement (NCEA).
 
 # Literature review of interactive techniques {#techniques}
 The data analysis process described by @Cook provide a structure and context for meaningful interactive data visualisation. They emphasise the role of interactive techniques in identifying the problem statement, preparing the data, enriching the exploratory and quantitative analysis, and lastly in the presentation of findings. The interactive techniques introduced by @Cook will form the basis of discussion, intermixed with contributions from other literature. 
@@ -238,11 +236,11 @@ In the set of software tools, the **shiny** package provides a connection to R w
 
 [^1]: See <http://shiny.rstudio.com/tutorial/> for resources.
 
-# The role of interactive visualisation in data analysis
+# The role of interactive visualisation in data analysis {#application}
 This section examines the use of interactive visualisation techniques in exploratory data analysis on the performance of New Zealand schools in the National Certificate of Educational Achievement (NCEA) in 2016. The role of interactive techniques in enhancing analysis and gaining further insight than static plots, will be be highlighted and demonstrated through worked examples. 
 
 ```{block, type="boxed", echo=TRUE}
-Key findings with regards to the use of interactive techniques in data analysis, or the teaching of interactive data visualisation, will be noted explicitly as they are demonstrated using the NCEA dataset.
+Key findings with regards to the use of interactive techniques in data analysis will be noted explicitly as they are demonstrated using the NCEA dataset.
 ```
 
 ## The NCEA dataset
@@ -256,7 +254,7 @@ Information on the school decile, region and a "small" cohort warning, were also
 
 After tidying the data retrieved from the NZQA website, the **NCEA** dataset consists of four real-valued variables, the achievement rates and one categorical variable for the decile rating of the school. Only schools with achievement indicators across all four qualification levels were retained, thus reducing the dataset to 408 schools from around New Zealand. The focus of analysis will be on its subset of 91 Auckland schools, but the New Zealand dataset of 408 schools will be used to demonstrate how interactive techniques can aid graphical analysis when observations increase. The sensitivity of analysis to samples size for the New Zealand schools dataset will also be explored interactively.
 
-Analysis of data for the Auckland subset will be the focus because it is less affected by the unreliability of small sample sizes. Auckland has many of the larger schools since it is the most populated city in New Zealand. The first few observations from the dataset of 91 schools in the Auckland region are shown in Table \@ref(tab:akl).
+Analysis of data for the Auckland subset will be the focus because it is less affected by the unreliability of small sample sizes. Auckland has many of the larger schools since it is the most populated city in New Zealand. The first few observations from the **Auckland** dataset of 91 schools are shown in Table \@ref(tab:akl).
 
 ```{r akl}
 source("files/NZQAdata.R")
@@ -395,7 +393,7 @@ The effectiveness of interactive techniques for large datasets will be affected 
 include_graphics("files/pcp_busy.jpg", auto_pdf=F)
 ```
 
-The PCP in Figure \@ref(fig:pcpAkl) suggests that patterns of performance across decile groups, if they exist, are difficult to distinguish at the multivariate level for Auckland schools. Hence principal component analysis (PCA) was applied to further examine the underlying multivariate structures. A plot of the first two principal components of the **Auckland schools** dataset is shown in Figure \@ref(fig:pcaAkl). Line segments with labels of the original variable names are used to represent the loadings of the principal components. The loadings are the contributions of each variable to the linear combinations that define the principal components [@Mass]. Since all four variable axes are orientated horizontally in the same direction, the first principal component reflects the schools' general performance across all four qualification levels. The vertical separation between the UE axis and the remaining axes, indicates that the second principal component contrasts performance in UE against the other qualifications. Not surprisingly the plot shows more spread across the first principal component since it explains a much greater proportion of the variation in the data. The first principal component reveals a division between the majority of schools and a smaller group, that is positioned away from the variable axes shown. The decile of the schools is represented by the colour and plotting symbol. The smaller group of schools appear to be decile five and below, except for one decile nine school. There is also a decile ten school that appears to be unusual when examining both principal components. The use of colour highlights the remaining decile nine and ten schools as similar in performance, as weighted by the principal components. On the other hand, schools from the other deciles seem to be more spread out from each other in the PCA plot.
+The PCP in Figure \@ref(fig:pcpAkl) suggests that patterns of performance across decile groups, if they exist, are difficult to distinguish at the multivariate level for Auckland schools. Hence principal component analysis (PCA) was applied to further examine the underlying multivariate structures. A plot of the first two principal components of the **Auckland** dataset is shown in Figure \@ref(fig:pcaAkl). Line segments with labels of the original variable names are used to represent the loadings of the principal components. The loadings are the contributions of each variable to the linear combinations that define the principal components [@Mass]. Since all four variable axes are orientated horizontally in the same direction, the first principal component reflects the schools' general performance across all four qualification levels. The vertical separation between the UE axis and the remaining axes, indicates that the second principal component contrasts performance in UE against the other qualifications. Not surprisingly the plot shows more spread across the first principal component since it explains a much greater proportion of the variation in the data. The first principal component reveals a division between the majority of schools and a smaller group, that is positioned away from the variable axes shown. The decile of the schools is represented by the colour and plotting symbol. The smaller group of schools appear to be decile five and below, except for one decile nine school. There is also a decile ten school that appears to be unusual when examining both principal components. The use of colour highlights the remaining decile nine and ten schools as similar in performance, as weighted by the principal components. On the other hand, schools from the other deciles seem to be more spread out from each other in the PCA plot.
 
 ```{r pcaAkl, fig.cap="First two principal components for Auckland schools"}
 # Static PCA plot
@@ -517,7 +515,7 @@ Initiating the linked brushing from the PCP is also useful. Figure \@ref(fig: br
 include_graphics("files/link_outPCP.jpg", auto_pdf=F)
 ```
 
-## Interactive analyses
+## Interactive analysis
 
 The NZQA indicator of a "small" cohort was at a very low threshold of fewer than five candidates at any qualification level. Hence information on the number of Year 11, 12 and 13 students at each school in 2016, was sourced from the New Zealand government website, Education Counts.[^4] The minimum cohort size for the three senior year levels will be used as indicator of whether the NCEA achievement rates were based on small sample sizes. The website also provided information on the ethnic composition of the New Zealand schools in terms of six general categories: Maori, Pasifika, Asian, Middle Eastern/Latin American/African (MELAA), Other and European/Pakeha. Hence the merged dataset contains additional information on region, type, total roll size, proportions of students in the six ethnic categories and a minimum cohort size based on the number of students at the senior levels.  
 
@@ -583,21 +581,44 @@ selectInput("group", "Select variable", choices=as.list(colnames(nzqa.sch)[6:15]
 When interactive techniques can be applied with ease, the trade-off between the effort required to implement the techniques and the level of insight gained, is generally favourable.
 ```
 
-The ease with which the other demographic variables could be investigated in Figure \@ref(fig:pcaSize) also emphasises the value of applying interactive techniques in exploratory data analysis. @Cook highlights how interactive data visualisation supports  "slipping out of dead-ends and chasing down new leads" (p.11). 
+The ease with which the other demographic variables could be investigated in Figure \@ref(fig:pcaSize) also emphasises the value of applying interactive techniques in exploratory data analysis. @Cook highlights how interactive data visualisation supports "slipping out of dead-ends and chasing down new leads" (p.11). 
 
 ```{block, type="boxed", echo=TRUE}
 Applying interactive data visualisation encourages further exploration of the data. Questions are addressed quickly and more questions arise from probing the data with interactive techniques.
 ```
 
-## Viewing the data space
-@blindfold applied tours to encourage the visualisation of statistical models in the data space. They demonstrated how linked brushing between visual representations of summary statistics and displays of models, allows subsets of models to be compared. 
+## Displaying models in data space
+The plot of the first two principal components of the **Auckland** dataset in Figure \@ref(fig:pcaAkl) suggests that there is a group of schools with similar achievement patterns. Projections of the first few principal components will often reveal any underlying structure in the data [@Mass]. However instead of simplifying data to display it in the model space, as is the case in Figure \@ref(fig:pcaAkl), @blindfold encourage visualisations of models in data space. They demonstrate how linked brushing between visual representations of summary statistics and tours displaying models, allow subsets of models to be compared.
+
+To further explore the four-dimensional space spanned by the achievement rate variables in the **Auckland** dataset, a guided tour using the holes index was applied. This projection pursuit index seeks out projections with few points at the centre [@Cook].  The guided tour will enable further investigation into how schools differ in their performance. Pairwise combinations of the first four principal components will provide the initial 2D projections for each tour. Hence six guided tours will be launched from different starting points in the four-dimensional data space. 
+
+In Figure \@ref(fig:nceaTour) the "Pursuit index" plot is linked to each tour animation via a mouse click on its pursuit index trace. The matrix of final tour projections and axes positions, on the far right, is a static plot that also allows for quick comparisons between the different tours. The plots in the top row show that tours finishing at similar index values have final projections that appear to be rotations of the same view. This suggests that the tour paths were gravitating towards the same region of the four-dimensional space. However no two tours will contain exactly the same projections [@Cook]. 
+
+The projection captured in Figure \@ref(fig:nceaTour) is from the tour that uses the third and fourth principal components as a starting basis. It makes sense that this tour began with the lowest holes index, since the first two principal components are projections of maximal variance. Consequently this provided the longest tour, with more views of the data space. The interactive sliders allow projections to be reviewed in more detail. Linked brushing relates projections back to the original variables, once an interesting view is found. 
 
 ```{r nceaTour, fig.cap="Guided tour of achievement rates for Auckland schools. See <https://shanl33.shinyapps.io/nceaTour/>.", out.width="500px"}
 # See NCEAsize.R for code for Shiny App
-include_graphics("files/finalApp.jpg", auto_pdf=F)
+include_graphics("files/ncea_Tour.jpg", auto_pdf=F)
 ```
+
+The tour plot in Figure \@ref(fig:nceaTour) shows a projection with a hole separating the data. Brushing the group of points below the hole links with the plots in the second row. This group of schools generally have above average achievement rates across all four qualification levels, with the exception of one school. The inclusion of this school suggests that one of the features that relates these schools together is their relatively high achievement rates in UE, compared to other schools. Apart from two schools all of these schools are from decile seven and above. All decile ten schools are included in this group.
 
 ```{block, type="boxed", echo=TRUE}
 Interactive techniques like linked brushing and tours, allow multiple views of the data to be viewed at the same time. Consequently leading to a more thorough exploration of data structures.
 ```
 
+```{r nceaTour, fig.cap="Guided tour of achievement rates for Auckland schools. See <https://shanl33.shinyapps.io/nceaTour/>.", out.width="500px"}
+# See NCEAsize.R for code for Shiny App
+include_graphics("files/ncea_TourUE.jpg", auto_pdf=F)
+```
+
+The PCP in Figure \@ref(fig:nceaTour) reuses the code from Figure \@ref(fig:pcp_scale). Similarly, the tour plot builds on the work and effort spent creating Figure \@ref(fig:tourinit). For complex interactive techniques like tours, it is particularly important to be able to "recycle" the code, otherwise it becomes to costly, in terms of time and effort, to apply in exploratory data analysis.
+
+```{block, type="boxed", echo=TRUE}
+A code-based approach towards creating interactive visualisations allow components to be reused and easily extended for new expolorations. This makes the learning curve and initial investment of time and effort worthwhile.
+```
+
+Where???
+```{block, type="boxed", echo=TRUE}
+Awareness towards the strengths and weaknesses of different software, allows for efficient application of interactive techniques.
+```
