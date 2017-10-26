@@ -1,0 +1,11 @@
+name: nceatour
+title: NCEAtour
+account: shanl33
+server: shinyapps.io
+appId: 229253
+bundleId: 1045479
+url: https://shanl33.shinyapps.io/nceatour/
+when: 1508982892.33019
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .Rapp.history

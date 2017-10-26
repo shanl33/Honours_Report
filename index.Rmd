@@ -12,7 +12,8 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.pos='center')
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', out.width="80%")
+knitr::opts_chunk$set(out.extra='style="display:block; margin:auto;"')
 #options(knitr.table.format = "html")  # Can change globally to "latex" for pdf
 # For cross referencing in html
 library(bookdown)
@@ -97,11 +98,23 @@ include_graphics("files/one2one2.jpg", auto_pdf=F)
 
 Instead of linking by case, a categorical variable can also be used to define the linking rule. This results in all members of the same level being highlighted, once one member is brushed [@Cook]. Gender is used as the linking rule in Figure \@ref(fig:catbrush) so that brushing one female crab links to highlighting points for all female crabs in the same plot.
 
-```{r catbrush, fig.cap="Categorical brushing where brushing one female crab highlights all points representing female crabs.", out.width="400px"}
+```{r catbrush, fig.cap="Categorical brushing where brushing one female crab highlights all points representing female crabs. Interactive figure can be accessed at <https://shanl33.shinyapps.io/cat_brush/>"}
 include_graphics("files/catbrush.jpg", auto_pdf=F)
 ```
 
-The query resulting from the categorical brushing in Figure \@ref(fig:catbrush) can also be achieved by brushing on a bar chart for the gender of the crabs and linking to the points in the scatterplot shown. For web-based software, brushing on visuals representing aggregated data, such as bar plots, is more challenging than linking by case [@crosstalk]. Although not impossible, the user needs to explicitly communicate details of the aggregation. This becomes more challenging when continuous variables are aggregated, or mosaic plots involving several categorical variables are used. The web-based R package **animint** attempts to make the implementation of aggregate brushing easier, but it is currently limited to discrete values and does not incorporate the flexibility of brushing by case [@animint].
+The categorical brushing demonstrated in Figure \@ref(fig:catbrush) was implemented using **plotly** and **shiny** software. The text output below the plot shows the data produced to describe the interactive brushing. How the data output relates to the graphical features brushed, depends on the type of plot used. For a scatterplot, like Figure \@ref(fig:catbrush), the data output can be easily related back to the plot features, as well as the dataset. The code below shows how data output from the brushing is captured using the **shiny** `event_data` function and then used to subset the **crabs** data to update the plot. For a scatterplot, the `pointNumber` is the row number of the selected point, offset by one, and hence it provides a direct way to relate the interactivity back to the dataset.
+
+```{r, eval=FALSE, echo=TRUE}
+# Record data from brushing
+s <- event_data("plotly_selected", source = "sp1")
+# If brushed, subset by sex and colour
+if (length(s)) {
+  rowBrushed <- s$pointNumber + 1
+  subsetCrabs <- crabs[which(crabs[rowBrushed, "sex"]==crabs$sex), ]
+}
+```
+
+It is more difficult to relate the data output from brushing aggregate plots, like histograms, back to the plot features and dataset. For web-based software, defining a linking rule from brushing on aggregated data is more challenging than linked brushing by case [@crosstalk]. Although not impossible, the user needs to explicitly communicate details of the aggregation. This becomes more challenging when continuous variables are aggregated, or several categorical variables are involved. The web-based R package **animint** attempts to make the implementation of aggregate brushing easier, but it is currently limited to discrete values and does not retain the flexibility of brushing by case [@animint].
 
 Linked brushing within a parallel coordinates plot (PCP) provides an example of *m*-to-*n* linking. A PCP displays multiple variables in a single plot by using parallel axes, rather than being restricted to two orthogonal axes, as in a scatterplot. Variable values on adjacent axes belonging to the same observation are joined by line segments. The parallel axes are typically scaled individually to maximise use of space on the plot, but global values can be used to establish a common scale for all axes as well [@GDA]. Figure \@ref(fig:m2nuni) uses five vertical axes, scaled individually to the range of each physical measurement recorded in the **crabs** dataset. The edges joining the nodes are relatively horizontal which suggests positive correlation between adjacent variables. Brushing the highest value on the **RW** axis links together the five physical measurements of the crab with the largest rear width. Hence linking together *m* nodes with *n* edges.
 
@@ -209,6 +222,8 @@ The interactive techniques discussed in Section \@ref(techniques) are not intend
 
 Table \@ref(tab:techniques) examines the coverage of each package as a standalone software. For example, unless **crosstalk** is combined with **shiny** it does not have access to an active R session. Although this feature is not an interactive technique, it has been included in Table \@ref(tab:techniques) since having access to statistical software enables a two-way workflow between data analysis and plot interaction [@pipe]. As previously discussed, this enables the implementation of techniques like subset selection, but affects the ease of sharing interactive visualisations.
 
+Linked brushing is summarised separately in Table \@ref(tab:brushing) since there is a variety of ways to define linking rules. Furthermore the implementation of linked brushing generally requires the packages to be combined. Enabling dynamic tours also require the additional **tourr** package.
+
 Table: (\#tab:techniques) Coverage of interactive techniques by **shiny**, **plotly** and **crosstalk** software.
 
 | R Package | Active<br>R session | Tooltip<br>Identification | Scaling | Subset selection | Animation<br>(for tours)|
@@ -216,8 +231,6 @@ Table: (\#tab:techniques) Coverage of interactive techniques by **shiny**, **plo
 | Shiny | Yes |  | | Yes<br>(via `Inputs`) | Yes | 
 | Plotly | | Yes | Yes | Limited to<br>filtering views | Yes |
 | Crosstalk |  |  |  | Limited to<br>filtering views | Yes |
-
-Linked brushing is summarised separately in Table \@ref(tab:brushing) since there is a variety of ways to define linking rules. Furthermore the implementation of linked brushing generally requires the packages to be combined. Enabling dynamic tours also require the additional **tourr** package.
 
 Table: (\#tab:brushing) Implementing linked brushing using combinations of **shiny**, **plotly** and **crosstalk** software.
 
@@ -395,7 +408,7 @@ include_graphics("files/pcp_busy.jpg", auto_pdf=F)
 
 The PCP in Figure \@ref(fig:pcpAkl) suggests that patterns of performance across decile groups, if they exist, are difficult to distinguish at the multivariate level for Auckland schools. Hence principal component analysis (PCA) was applied to further examine the underlying multivariate structures. A plot of the first two principal components of the **Auckland** dataset is shown in Figure \@ref(fig:pcaAkl). Line segments with labels of the original variable names are used to represent the loadings of the principal components. The loadings are the contributions of each variable to the linear combinations that define the principal components [@Mass]. Since all four variable axes are orientated horizontally in the same direction, the first principal component reflects the schools' general performance across all four qualification levels. The vertical separation between the UE axis and the remaining axes, indicates that the second principal component contrasts performance in UE against the other qualifications. Not surprisingly the plot shows more spread across the first principal component since it explains a much greater proportion of the variation in the data. The first principal component reveals a division between the majority of schools and a smaller group, that is positioned away from the variable axes shown. The decile of the schools is represented by the colour and plotting symbol. The smaller group of schools appear to be decile five and below, except for one decile nine school. There is also a decile ten school that appears to be unusual when examining both principal components. The use of colour highlights the remaining decile nine and ten schools as similar in performance, as weighted by the principal components. On the other hand, schools from the other deciles seem to be more spread out from each other in the PCA plot.
 
-```{r pcaAkl, fig.cap="First two principal components for Auckland schools"}
+```{r pcaAkl, fig.cap="First two principal components for Auckland schools", fig.align="center"}
 # Static PCA plot
 # Function for PCA and plot
 # scale.factor is an arbitary value that scales the loadings axes so that they can be on a comparable scale as the standardised PCs (scores). 
@@ -560,7 +573,7 @@ kable(nzqa.sch[1:3, -(16:18)], booktabs=TRUE, caption="The first few observation
 
 Figure \@ref(fig:pcaSize) explores the effect of sample size on the principal component analysis. The interactive slider subsets the schools according to their minimum cohort size before PCA is performed. The effect of varying the sample size can be dynamically viewed by selecting the "play" icon on the slider, as shown in Figure \@ref(fig:pcaSize).
 
-```{r pcaSize, fig.cap="Interactivity to explore the effect of sample size. See <https://shanl33.shinyapps.io/ncea/>.", out.width="500px"}
+```{r pcaSize, fig.cap="Interactivity to explore the effect of sample size. Interactive figure can be accessed at <https://shanl33.shinyapps.io/ncea/>.", out.width="500px"}
 # See NCEAsize.R for code for Shiny App
 include_graphics("files/pca_shiny0.jpg", auto_pdf=F)
 ```
@@ -596,7 +609,7 @@ In Figure \@ref(fig:nceaTour) the "Pursuit index" plot is linked to each tour an
 
 The projection captured in Figure \@ref(fig:nceaTour) is from the tour that uses the third and fourth principal components as a starting basis. It makes sense that this tour began with the lowest holes index, since the first two principal components are projections of maximal variance. Consequently this provided the longest tour, with more views of the data space. The interactive sliders allow projections to be reviewed in more detail. Linked brushing relates projections back to the original variables, once an interesting view is found. 
 
-```{r nceaTour, fig.cap="Guided tour of achievement rates for Auckland schools. See <https://shanl33.shinyapps.io/nceaTour/>.", out.width="500px"}
+```{r nceaTour, fig.cap="Guided tour of achievement rates for Auckland schools. Interactive figure can be accessed at <https://shanl33.shinyapps.io/nceatour/>.", out.width="500px"}
 # See NCEAsize.R for code for Shiny App
 include_graphics("files/ncea_Tour.jpg", auto_pdf=F)
 ```
@@ -607,12 +620,12 @@ The tour plot in Figure \@ref(fig:nceaTour) shows a projection with a hole separ
 Interactive techniques like linked brushing and tours, allow multiple views of the data to be viewed at the same time. Consequently leading to a more thorough exploration of data structures.
 ```
 
-```{r nceaTourUE, fig.cap="Guided tour of achievement rates for Auckland schools. See <https://shanl33.shinyapps.io/nceaTour/>.", out.width="500px"}
+```{r nceaTourUE, fig.cap="Guided tour of achievement rates for Auckland schools. See <https://shanl33.shinyapps.io/nceatour/>.", out.width="500px"}
 # See NCEAsize.R for code for Shiny App
 include_graphics("files/ncea_TourUE.jpg", auto_pdf=F)
 ```
 
-The PCP in Figure \@ref(fig:nceaTourUE) reuses the code from Figure \@ref(fig:pcp_scale). Similarly, the tour plot builds on the work and effort spent creating Figure \@ref(fig:tourinit). For complex interactive techniques like tours, it is particularly important to be able to "recycle" the code, otherwise it becomes to costly, in terms of time and effort, to apply in exploratory data analysis.
+The PCP in Figure \@ref(fig:nceaTourUE) reuses the code from Figure \@ref(fig:pcp_scale). Similarly, the tour plot builds on the work and effort spent creating Figure \@ref(fig:tourinit). For complex interactive techniques like tours, it is particularly important to be able to "recycle" the code, otherwise it becomes too costly, in terms of time and effort, to apply such techniques in exploratory data analysis.
 
 ```{block, type="boxed", echo=TRUE}
 A code-based approach towards creating interactive visualisations allow components to be reused and easily extended for new expolorations. This makes the learning curve and initial investment of time and effort worthwhile.
