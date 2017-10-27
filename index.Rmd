@@ -70,7 +70,7 @@ Applying interactive techniques to data analysis resulted in further insight int
 
 The benefits of applying interactivity to data analysis outweighed the effort required to implement the interactive techniques. Once sufficient mastery of software was acquired, the interactive techniques could be applied to new analysis in novel ways. The ease of applying interactive techniques to gain deeper insight in analysis and a thorough understanding of underlying processes, justifies teaching interactive data visualisation to graduate students.
 
-Section \@ref(techniques) introduces a set of techniques commonly used in literature to demonstrate interactive data visualisation. A range of software tools will then be compared in Section \ref(software), leading to a further examination of the R packages **plotly**, **crosstalk** and **shiny**. Finally, Section \@ref(application) demonstrates how interactive techniques can be applied to exploratory data analysis, using results from the National Certificate of Educational Achievement (NCEA).
+This paper examines the techniques and software tools that will be useful for teaching interactive data visualisation. Section \@ref(techniques) introduces a set of interactive techniques that are recommended in the literature. A range of software tools will then be compared in Section \@ref(software), leading to a further examination of the R packages **plotly**, **crosstalk** and **shiny**. Finally, Section \@ref(application) demonstrates how interactive techniques can be applied to exploratory data analysis, using results from the National Certificate of Educational Achievement (NCEA).
 
 # Literature review of interactive techniques {#techniques}
 
@@ -655,5 +655,9 @@ Awareness towards the strengths and weaknesses of different software, allows for
 ```
 
 @EDA famously stated "The greatest value of a picture is when it **forces** us to notice what we never expected to see." (p vi).
+
+If you reviewed Tukey's comment in light of what we have examined...
+It should be clear enough that the interactive techniques...
+Copy and paste intro and re-write as conclusion.
 
 # References {-}
