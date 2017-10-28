@@ -752,6 +752,6 @@ Applying interactive techniques in exploratory data anaylsis has highlighted the
 
 The amount of effort and code required for implementing interactive techniques varies depending on the software used. Generally more than one open-source code-based software package is required when applying interactive data visualisation. The combination of **plotly**, **crosstalk** and **shiny** provides thorough coverage of the key interactive skills. The code for implementing interactive techniques for one analysis, can be modified for further use. This makes the initial investment in time and effort worthwhile, and encourages more questions about the data to be explored.
 
-In reviewing Tukey's comments in the opening, we have demonstrated how statisticians can access a powerful toolbox for interactive data visualisaton to enrich their analysis. The set of interactive techniques and software identified are worthwhile teaching to today's young people.
+In reviewing Tukey's comments in the opening, we have demonstrated how statisticians can access a powerful toolbox of interactive techniques to enrich their data analysis. Hence the set of interactive techniques and software identified are worthwhile teaching to today's graduate students.
 
 # References {-}
