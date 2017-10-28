@@ -746,23 +746,12 @@ A code-based approach allows interactive visualisations to be reused and easily 
 ## Findings for the Auckland dataset
 The exploratory data analysis on the **Auckland** dataset highlighted that there is no general relationship between the decile rating of a school and its 2016 NCEA achievement rates. Other than decile nine and ten schools, patterns of achievement for the remaining decile levels are inconclusive. Decile nine and ten schools perform consistently at a high level across the four qualifications. They form part of a small group of schools from predominantly decile five and above, who have similar achievement rates to each other. 
 
-The interactive techniques applied during the exploratory analysis allowed multiple views of the data to be explored simultaneously and thoroughly. 
-
-
 # Conclusion
 
 Applying interactive techniques in exploratory data anaylsis has highlighted the value of linked brushing, identification, scaling, subset selection and tours, in revealing further insight into the data. Outliers could be quickly examined using linked brushing and identification, to better understand how they were unusual. Different structures in the data could be explored with interactive scaling and subset selection. Views of complex multivariate structures were possible through dynamic tours. Furthermore linked brushing enabled multiple views of the data to be explored simultaneously and related together. 
 
-The amount of effort and code required for implementing interactive techniques varies depending on the software used and generally more than one software package is required. The combination of **plotly**, **crosstalk** and **shiny** makes the software required for interactive data visualisation easily accessible to statisticians and provides a thorough coverage of the key interactive skills. The ease of sharing and documentation resulting from these code-based software are also 
-These software make sharing the interactivity used in analysis easier and provides the documentation for the interactive techniques to be used again in future analysis.
-Although Tukey's comments in 1965 were in response to the impact of computers on statistical practices at the time, his words are still relevant in the 21st Century. The introduction of the internet and the development of web-based graphics, have provided easy access to "powerful factories" for creating interactive visualisations. How do these visualisations benefit data analysis? Is there enough value added for it to be worthwhile learning, or teaching? This paper examines how interactive techniques have been applied in data analysis and demonstrates the practicalities of using current open-source, code-based software to implement interactive data visualisation.
+The amount of effort and code required for implementing interactive techniques varies depending on the software used. Generally more than one open-source code-based software package is required when applying interactive data visualisation. The combination of **plotly**, **crosstalk** and **shiny** provides thorough coverage of the key interactive skills. The code for implementing interactive techniques for one analysis, can be modified for further use. This makes the initial investment in time and effort worthwhile, and encourages more questions about the data to be explored.
 
-The first stage of this research involved a survey of the techniques and open-source software currently available. A literature review helped to identify commonly used interactive techniques. The software tools were then evaluated against these techniques, in terms of coverage and ease of application. A focal set of software tools was established and used to explore the role of interactive data visualisation in the data analysis cycle. This second stage of research applied interactive techniques in exploratory data analysis of a dataset not previously examined in the literature.
-
-@EDA famously stated "The greatest value of a picture is when it **forces** us to notice what we never expected to see." (p. vi).
-
-If you reviewed Tukey's comment in light of what we have examined...
-It should be clear enough that the interactive techniques...
-Copy and paste intro and re-write as conclusion.
+In reviewing Tukey's comments in the opening, we have demonstrated how statisticians can access a powerful toolbox for interactive data visualisaton to enrich their analysis. The set of interactive techniques and software identified are worthwhile teaching to today's young people.
 
 # References {-}
