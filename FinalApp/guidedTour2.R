@@ -70,11 +70,10 @@ pursuit_info <- function(base, t_name, a_tour) {
 # Extracts xy coords for "tour" projection plots of a single tour (ie. proj coords of a tour)
 XYsingle <- function (single_tour) {
   n <- length(single_tour)
-  #Below is equivalent? If so change AXsingle too.
-  #x <- sapply(1:n, function(i) {unlist(single_tour[[i]][[1]][, 1])})
   x <- do.call(c, lapply(1:n, function(i) {unlist(single_tour[[i]][[1]][, 1])}))
   y <- do.call(c, lapply(1:n, function(i) {unlist(single_tour[[i]][[1]][, 2])}))
   XY <- data.frame(x=x, y=y, iteration = rep(1:n, each=length(x)/n))
+  return(XY)
 }
 
 # Extracts xy coords for "axes" plots of a single tour 
@@ -87,6 +86,7 @@ AXsingle <- function (single_tinterp) {
   AX_y <- do.call(c, lapply(1:n, function(i) {unlist(single_tinterp[[i]][(p+1):(p+p)])}))
   AX <- data.frame(x = AX_x, y = AX_y, iteration = rep(1:n, each = p),
                    measure=rep(colnames(attr(single_tinterp, "data")), n))
+  return(AX)
 }
 
 # Functions for extracting last projection of a (single) tour (for scattermatrix)
@@ -125,10 +125,9 @@ tour_axes <- function(df, tour_cols, k) {
   )
   plot_ly(df, x=~x, y=~y, frame=~iteration, hoverinfo="none") %>%
     add_segments(xend = 0, yend = 0, color = I(tour_cols[k]), size = I(1)) %>%
-    add_text(text = ~measure, color=I("black")) %>%
-    layout(xaxis = ax,
-           yaxis = list(title="", range=c(-2.1, 2.2), 
-                        zeroline=F, showticklabels=F, showgrid=F), 
+    add_text(text=~measure, color=I("black")) %>%
+    layout(xaxis=ax,
+           yaxis=list(title="", range=c(-2.1, 2.2), zeroline=F, showticklabels=F, showgrid=F), 
            margin=list(l=0, r=0, b=0, t=0, pad=0))
 }
 
