@@ -62,7 +62,7 @@ The first stage of this research involved a survey of the techniques and open-so
 
 ## Findings
 
-Different types of linked brushing, identification, subset selection and tours, were found to be commonly used techniques in interactive data visualisation. Using the R packages **plotly** and **crosstalk** together, or in combination with **shiny** software, provided a code-based, open-source approach towards applying these interactive techniques. Awareness towards the limitations and code efficiency of each software, enabled the efficient application of interactive techniques to exploratory data analysis of a 'real' dataset. 
+Different types of linked brushing, identification, scaling, subset selection and tours, were found to be commonly used techniques in interactive data visualisation. Using the R packages **plotly** and **crosstalk** together, or in combination with **shiny** software, provided a code-based, open-source approach towards applying these interactive techniques. Awareness towards the limitations and code efficiency of each software, enabled the efficient application of interactive techniques to exploratory data analysis of a 'real' dataset. 
 
 Applying interactive techniques to data analysis resulted in further insight into underlying multivariate structures. For example tooltip identification of outliers and linked brushing of individual and groups of observations, capitalised on the multivariate views offered by parallel coordinates plots. Furthermore interactive subset selection helped to reduce problems caused by overplotting and allowed the effect of sample size on analysis to be explored.
 
@@ -495,24 +495,20 @@ include_graphics("files/pcp_busy.jpg", auto_pdf=F)
 
 ## Design of visuals
 
-The positive relationships previously identified in the pairs plot, should translate to approximately horizontal lines between the parallel axes in the PCP, as opposed to sloped or 'criss-crossed' lines for negative correlation. By changing the scale of the PCP to an univariate scale, such as the standardised scale shown in Figure \@ref(fig:pcpscale), we can verify the correlation between successive achievement rates, by taking into consideration the increasing difficulty of the qualification levels as well.  
-
-```{block, type="boxed", echo=TRUE}
-Interactivity allows different scales to be examined quickly and dynamically. Hence the effect of important design decisions, such as scaling, can be considered thoroughly.
-```
+The positive relationships previously identified in the pairs plot, should translate to approximately horizontal lines between the parallel axes in the PCP, as opposed to sloped or 'criss-crossed' lines for negative correlation. By changing the scale of the PCP to an univariate scale, such as the standardised scale shown in Figure \@ref(fig:pcpscale), we can verify the correlation between successive achievement rates, by taking into consideration the increasing difficulty of the qualification levels as well. The parallel coordinate plots in Figure \@ref(fig:pcpscale) question whether the positive relationships hold true for Auckland schools with low achievement rates and in some decile groups. 
 
 ```{r pcpscale, fig.cap="Interactively exploring the effect of scaling on a PCP. Interactive figure can be accessed at <https://shanl33.shinyapps.io/nceatour/>", out.width="700px"}
 # Replace with app (with legen of colour included)
 include_graphics("files/pcp_scale.jpg", auto_pdf=F)
 ```
 
-The parallel coordinate plots in Figure \@ref(fig:pcpscale) question whether the positive relationships hold true for Auckland schools with low achievement rates and in some decile groups. In particular, there appears to be a negative relationship between achievement rates at L3 and UE for many schools (?)
+Changes in the scaling of the axes offer different views of the structures. Using univariate scaling, either standardising or using the minimum and maximum of individual variables for each scale, encourages comparisons between observations to be made. Meanwhile a global scale, such as the applying the overall range to all scales, encourages comparisons across the variables. Hence the first two scaling choices in Figure \@ref(fig:pcpscale) focuses on ranking schools in the **Auckland** dataset and comparing achievement rates within qualification levels. Being able to compare the effects of scaling quickly and dynamically, highlights the common patterns that can be identified. In particular, the dominance of the higher decile schools and the inconsistent performance across qualification levels for some deciles.
 
-Using a global scale we can see that the achievement rates for UE are clearly the most variable.
+```{block, type="boxed", echo=TRUE}
+Interactivity allows different scales to be examined quickly and dynamically. Hence the effect of important plot design decisions, such as scaling, can be considered thoroughly and different views of the data explored.
+```
 
-Standardising the achievement rates creates a PCP for comparison between the performance of schools. Similarly, rescaling each variable to range from 0 to 1 (achieved by `Univariate_minmax`) focuses on ranking the cases and comparing performance within qualification levels. Patterns of achievement across the qualification levels are of interest, hence scaling using the global minimum and maximum values, used in Figure \@ref(fig:pcpAkl), will be retained in further analysis. However being able to compare the effects of scaling quickly and dynamically, highlights the common patterns that can be identified. In particular, the dominance of the higher decile schools and the inconsistent performance across qualification levels for some deciles.
-
-The PCP in Figure \@ref(fig:pcpAkl) suggests that patterns of performance across decile groups, if they exist, are difficult to distinguish at the multivariate level for Auckland schools. Hence principal component analysis (PCA) was applied to further examine the underlying multivariate structures. A plot of the first two principal components of the **Auckland** dataset is shown in Figure \@ref(fig:pcaAkl). Line segments with labels of the original variable names are used to represent the loadings of the principal components. The loadings are the contributions of each variable to the linear combinations that define the principal components [@Mass]. Since all four variable axes are orientated horizontally in the same direction, the first principal component reflects the schools' general performance across all four qualification levels. The vertical separation between the UE axis and the remaining axes, indicates that the second principal component contrasts performance in UE against the other qualifications. Not surprisingly the plot shows more spread across the first principal component since it explains a much greater proportion of the variation in the data. The first principal component reveals a division between the majority of schools and a smaller group, that is positioned away from the variable axes shown. The decile of the schools is represented by the colour and plotting symbol. The smaller group of schools appear to be decile five and below, except for one decile nine school. There is also a decile ten school that appears to be unusual when examining both principal components. The use of colour highlights the remaining decile nine and ten schools as similar in performance, as weighted by the principal components. On the other hand, schools from the other deciles seem to be more spread out from each other in the PCA plot.
+The parallel coordinate plots suggest that patterns of performance across decile groups, if they exist, are difficult to distinguish at the multivariate level for Auckland schools. Hence principal component analysis (PCA) was applied to further examine the underlying multivariate structures. A plot of the first two principal components of the **Auckland** dataset is shown in Figure \@ref(fig:pcaAkl). Line segments with labels of the original variable names are used to represent the loadings of the principal components. The loadings are the contributions of each variable to the linear combinations that define the principal components [@Mass]. Since all four variable axes are orientated horizontally in the same direction, the first principal component reflects the schools' general performance across all four qualification levels. The vertical separation between the UE axis and the remaining axes, indicates that the second principal component contrasts performance in UE against the other qualifications. Not surprisingly the plot shows more spread across the first principal component since it explains a much greater proportion of the variation in the data. The first principal component reveals a division between the majority of schools and a smaller group, that is positioned away from the variable axes shown. The decile of the schools is represented by the colour and plotting symbol. The smaller group of schools appear to be decile five and below, except for one decile nine school. There is also a decile ten school that appears to be unusual when examining both principal components. The use of colour highlights the remaining decile nine and ten schools as similar in performance, as weighted by the principal components. On the other hand, schools from the other deciles seem to be more spread out from each other in the PCA plot.
 
 ```{r pcaAkl, fig.cap="First two principal components for Auckland schools", fig.align="center"}
 # Static PCA plot
@@ -677,7 +673,17 @@ nzqa.sch$Decile <- as.factor(nzqa.sch$Decile)
 kable(nzqa.sch[1:3, -(16:18)], booktabs=TRUE, caption="The first few observations from the merged **NCEA** dataset. The data consists of ten real-valued variables, two discrete variables and three categorical variables.")
 ```
 
-Figure \@ref(fig:pcaSize) explores the effect of sample size on the principal component analysis. The interactive slider subsets the schools according to their minimum cohort size before PCA is performed. The effect of varying the sample size can be dynamically viewed by selecting the 'play' icon on the slider, as shown in Figure \@ref(fig:pcaSize).
+Figure \@ref(fig:pcaSize) explores the effect of sample size on the principal component analysis. The interactive slider subsets the schools according to their minimum cohort size before PCA is performed. The effect of varying the sample size can be dynamically viewed by selecting the 'play' icon on the slider of the **shiny** app in Figure \@ref(fig:pcaSize). In order to explore multiple sample sizes there needs to be flexibility in subseting the dataset and then performing PCA. A new range of sample sizes to be explore quickly, by modifying the `min` and `max` arguments of the following line of code from the **shiny** app:
+
+```{r, eval=FALSE, echo=TRUE}
+sliderInput("cohort2", label="Minimum size of Year 11, 12, 13 cohorts", min=0, max=100, step=10, value=0, animate=T)
+```
+
+If **crosstalk** had been used to provide the animation in Figure \@ref(fig:pcaSize) instead of **shiny**, all data for the PCA and plotting would need to be pregenerated. This would require more memory usage and additional code to organise the volume of data. 
+
+```{block, type="boxed", echo=TRUE}
+Awareness towards the strengths and weaknesses of different software, allows for efficient application of interactive techniques.
+```
 
 ```{r pcaSize, fig.cap="Interactivity to explore the effect of sample size. Interactive figure can be accessed at <https://shanl33.shinyapps.io/ncea/>.", out.width="500px"}
 # See NCEAsize.R for code for Shiny App
@@ -737,10 +743,21 @@ The PCP in Figure \@ref(fig:nceaTourUE) reuses the code from Figure \@ref(fig:pc
 A code-based approach allows interactive visualisations to be reused and easily extended for new explorations. This makes the learning curve and initial investment in time and effort more worthwhile.
 ```
 
-Where???
-```{block, type="boxed", echo=TRUE}
-Awareness towards the strengths and weaknesses of different software, allows for efficient application of interactive techniques.
-```
+## Findings for the Auckland dataset
+The exploratory data analysis on the **Auckland** dataset highlighted that there is no general relationship between the decile rating of a school and its 2016 NCEA achievement rates. Other than decile nine and ten schools, patterns of achievement for the remaining decile levels are inconclusive. Decile nine and ten schools perform consistently at a high level across the four qualifications. They form part of a small group of schools from predominantly decile five and above, who have similar achievement rates to each other. 
+
+The interactive techniques applied during the exploratory analysis allowed multiple views of the data to be explored simultaneously and thoroughly. 
+
+
+# Conclusion
+
+Applying interactive techniques in exploratory data anaylsis has highlighted the value of linked brushing, identification, scaling, subset selection and tours, in revealing further insight into the data. Outliers could be quickly examined using linked brushing and identification, to better understand how they were unusual. Different structures in the data could be explored with interactive scaling and subset selection. Views of complex multivariate structures were possible through dynamic tours. Furthermore linked brushing enabled multiple views of the data to be explored simultaneously and related together. 
+
+The amount of effort and code required for implementing interactive techniques varies depending on the software used and generally more than one software package is required. The combination of **plotly**, **crosstalk** and **shiny** makes the software required for interactive data visualisation easily accessible to statisticians and provides a thorough coverage of the key interactive skills. The ease of sharing and documentation resulting from these code-based software are also 
+These software make sharing the interactivity used in analysis easier and provides the documentation for the interactive techniques to be used again in future analysis.
+Although Tukey's comments in 1965 were in response to the impact of computers on statistical practices at the time, his words are still relevant in the 21st Century. The introduction of the internet and the development of web-based graphics, have provided easy access to "powerful factories" for creating interactive visualisations. How do these visualisations benefit data analysis? Is there enough value added for it to be worthwhile learning, or teaching? This paper examines how interactive techniques have been applied in data analysis and demonstrates the practicalities of using current open-source, code-based software to implement interactive data visualisation.
+
+The first stage of this research involved a survey of the techniques and open-source software currently available. A literature review helped to identify commonly used interactive techniques. The software tools were then evaluated against these techniques, in terms of coverage and ease of application. A focal set of software tools was established and used to explore the role of interactive data visualisation in the data analysis cycle. This second stage of research applied interactive techniques in exploratory data analysis of a dataset not previously examined in the literature.
 
 @EDA famously stated "The greatest value of a picture is when it **forces** us to notice what we never expected to see." (p. vi).
 
