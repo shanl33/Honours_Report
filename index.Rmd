@@ -9,6 +9,8 @@ output:
   bookdown::html_document2:
     fig_caption: yes
     css: ["style.css"]
+nocite: |
+  @R 
 ---
 
 <style>
@@ -24,7 +26,7 @@ div.svg-container {
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', out.width="80%")
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', out.width="75%")
 #knitr::opts_chunk$set(out.extra='style="display:block; margin:auto;"')
 #options(knitr.table.format = "html")  # Can change globally to "latex" for pdf
 # For cross referencing in html
@@ -102,17 +104,17 @@ subplot(sex_sp, CL_RW, titleX=TRUE, titleY=TRUE, margin=0.06) %>%
   highlight(on="plotly_select", off="plotly_deselect", persistent=TRUE, dynamic=TRUE)
 ```
 
-```{r one2one, fig.cap="The group of points representing male crabs of the Blue species is brushed to link one-to-one with their carapace length and rear width measurements in the scatterplot.", out.width="700px"}
+```{r one2one, fig.cap="The group of points representing male crabs of the Blue species is brushed to link one-to-one with their carapace length and rear width measurements in the scatterplot.", out.width="600px"}
 include_graphics("files/one2one.jpg", auto_pdf=F)
 ```
 
-```{r one2one2, fig.cap="An example of one-to-one linking and persistent brushing. The crab with the largest rear width measurement was first brushed, followed by the group of three smaller crabs. The sex and species of the four crabs are highlighted corresponding to the colours used in the brushing.", out.width="700px"}
+```{r one2one2, fig.cap="An example of one-to-one linking and persistent brushing. The crab with the largest rear width measurement was first brushed, followed by the group of three smaller crabs. The sex and species of the four crabs are highlighted corresponding to the colours used in the brushing.", out.width="600px"}
 include_graphics("files/one2one2.jpg", auto_pdf=F)
 ```
 
 Instead of linking by case, a categorical variable can also be used to define the linking rule. This results in all members of the same level being highlighted, once one member is brushed [@Cook]. Gender is used as the linking rule in Figure \@ref(fig:catbrush) so that brushing one female crab links to highlighting points for all female crabs in the same plot.
 
-```{r catbrush, fig.cap="Categorical brushing with gender as the linking rule. Brushing one female crab highlights the points for all female crabs in the scatterplot. The data output recorded from the interaction provides the details for writing code to link the brushing with the remaining female crabs. Interactive figure can be accessed at <https://shanl33.shinyapps.io/cat_brush/>"}
+```{r catbrush, fig.cap="Categorical brushing with gender as the linking rule. Brushing one female crab highlights the points for all female crabs in the scatterplot. The data output recorded from the interaction provides the details for writing code to link the brushing with the remaining female crabs. Interactive figure can be accessed at <https://shanl33.shinyapps.io/cat_brush/>", out.width="500px"}
 include_graphics("files/catbrush.jpg", auto_pdf=F)
 ```
 
@@ -157,7 +159,7 @@ crabs_pcp(crabs2)
 crabs_pcp(crabs)
 ```
 
-```{r m2nuni, fig.cap="An example of m-to-n linking and identification. The five physical measurements of the crab with the largest rear width are linked together by brushing. Tooltips identify the crab as a female Orange crab."}
+```{r m2nuni, fig.cap="An example of m-to-n linking and identification. The five physical measurements of the crab with the largest rear width are linked together by brushing. Tooltips identify the crab as a female Orange crab.", out.width="500px"}
 include_graphics("files/m2n_uni.jpg", auto_pdf=F)
 ```
 
@@ -179,7 +181,7 @@ The use of different scales in visual displays can reveal different features of 
 
 Figure \@ref(fig:m2nglobal) displays the same data as in Figure \@ref(fig:m2nuni), but uses the overall range of the five physical measurements to apply a common scale to the parallel axes. The crab with the largest rear width is again brushed and identified. The change in scaling makes the correlation between variables more difficult to confirm in Figure \@ref(fig:m2nglobal) and the nodes harder to brush individually, than in Figure \@ref(fig:m2nuni).
 
-```{r m2nglobal, fig.cap="Applying a global scale hides the correlation between variables and causes the plot to become easily overplotted."}
+```{r m2nglobal, fig.cap="Applying a global scale hides the correlation between variables and causes the plot to become easily overplotted.", out.width="500px"}
 include_graphics("files/m2n_global.jpg", auto_pdf=F)
 ```
 
@@ -332,7 +334,7 @@ Table: (\#tab:techniques) Coverage of interactive techniques by **shiny**, **plo
 
 | R Package | Active<br>R session | Tooltip<br>Identification | Scaling | Subset selection | Animation<br>(for tours)|
 |-----------|:---------------:|:--------------:|:-------:|:----------------:|:--------:|
-| Shiny | Yes |  | | Yes (for<br>analysis & plots) | Yes | 
+| Shiny | Yes |  | | Yes <br>(analysis & plots) | Yes | 
 | Plotly | | Yes | Yes | Limited to<br>filtering views | Yes |
 | Crosstalk |  |  |  | Limited to<br>filtering views | Yes |
 
@@ -461,13 +463,13 @@ Figure \@ref(fig:pcpOut) demonstrates the use of interactive techniques to explo
 Brushing within an individual plot overcomes overplotting to highlight features of interest.
 ```
 
-```{r pcpOut, fig.cap="Linked brushing to examine outliers.", out.width="700px"}
+```{r pcpOut, fig.cap="Linked brushing to examine outliers.", out.width="600px"}
 include_graphics("files/pcp_outlier.jpg", auto_pdf=F)
 ```
 
 @Cook describe how linked brushing enables dynamic database querying and direct comparisons between subsets of data and the general distribution. Figure \@ref(fig:pcpL3) illustrates how brushing the point where L3=100% on the interactive PCP, highlights the extent of the variability in performance at the other qualification levels. Surprisingly, the distribution of UE achievement rates for schools with 100% achievement at L3, is just as spread out as the overall performance of New Zealand schools in the dataset. Many of these schools also obtained 100% achievement rates at L2, but again there is surprisingly variable success at L1.
 
-```{r pcpL3, fig.cap="Linked brushing to subset groups of interest.", out.width="700px"}
+```{r pcpL3, fig.cap="Linked brushing to subset groups of interest.", out.width="600px"}
 include_graphics("files/pcp_L3.jpg", auto_pdf=F)
 ```
 
@@ -489,7 +491,7 @@ However the ease and effectiveness of linked brushing can also be affected by ov
 The effectiveness of interactive techniques for large datasets will be affected by rendering delays and limitations imposed by plot size and resolution.
 ```
 
-```{r pcpBusy, fig.cap="Accuracy of brushing is affected by overplotting.", out.width="700px"}
+```{r pcpBusy, fig.cap="Accuracy of brushing is affected by overplotting.", out.width="600px"}
 include_graphics("files/pcp_busy.jpg", auto_pdf=F)
 ```
 
@@ -685,7 +687,7 @@ If **crosstalk** had been used to provide the animation in Figure \@ref(fig:pcaS
 Awareness towards the strengths and weaknesses of different software, allows for efficient application of interactive techniques.
 ```
 
-```{r pcaSize, fig.cap="Interactivity to explore the effect of sample size. Interactive figure can be accessed at <https://shanl33.shinyapps.io/ncea/>.", out.width="500px"}
+```{r pcaSize, fig.cap="Interactivity to explore the effect of sample size. Interactive figure can be accessed at <https://shanl33.shinyapps.io/ncea/>.", out.width="600px"}
 # See NCEAsize.R for code for Shiny App
 include_graphics("files/pca_shiny0.jpg", auto_pdf=F)
 ```
@@ -721,7 +723,7 @@ In Figure \@ref(fig:nceaTour) the 'Pursuit index' plot is linked to each tour an
 
 The projection captured in Figure \@ref(fig:nceaTour) is from the tour that uses the third and fourth principal components as a starting basis. It makes sense that this tour began with the lowest holes index, since the first two principal components are projections of maximal variance. Consequently this provided the longest tour, with more views of the data space. The interactive sliders allow projections to be reviewed in more detail. Once an interesting view is found, linked brushing can be applied to relate the projections back to the original variables. 
 
-```{r nceaTour, fig.cap="Guided tour of achievement rates for Auckland schools. Interactive figure can be accessed at <https://shanl33.shinyapps.io/nceatour/>.", out.width="500px"}
+```{r nceaTour, fig.cap="Guided tour of achievement rates for Auckland schools. Interactive figure can be accessed at <https://shanl33.shinyapps.io/nceatour/>.", out.width="100%"}
 # See NCEAsize.R for code for Shiny App
 include_graphics("files/nceaTour.jpg", auto_pdf=F)
 ```
@@ -732,9 +734,9 @@ The tour plot in Figure \@ref(fig:nceaTour) shows a projection with a hole separ
 Interactive techniques like linked brushing and tours, allow multiple views of the data to be viewed at the same time. Consequently leading to a more thorough exploration of data structures.
 ```
 
-```{r nceaTourUE, fig.cap="Guided tour of achievement rates for Auckland schools. See <https://shanl33.shinyapps.io/nceatour/>.", out.width="500px"}
+```{r nceaTourUE, fig.cap="Guided tour of achievement rates for Auckland schools. See <https://shanl33.shinyapps.io/nceatour/>.", out.width="100%"}
 # See NCEAsize.R for code for Shiny App
-include_graphics("files/nceaTourBrush.jpg", auto_pdf=F)
+include_graphics("files/nceaTourBrush2.jpg", auto_pdf=F)
 ```
 
 The PCP in Figure \@ref(fig:nceaTourUE) reuses the code from Figure \@ref(fig:pcp_scale). Similarly, the tour plot builds on the work and effort spent creating Figure \@ref(fig:crabstour). For complex interactive techniques like tours, it is particularly important to be able to reuse the code, otherwise it becomes too costly, in terms of time and effort, to apply such techniques in exploratory data analysis.
