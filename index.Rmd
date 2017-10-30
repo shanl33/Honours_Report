@@ -1,7 +1,6 @@
 ---
 title: "Code-based, open-source software for teaching interactive data visualisation"
 author: "Shan-I Lee"
-#output: pdf_document
 bibliography: ["HonoursProject.bib"]
 biblio-style: "apalike"
 link-citations: true
@@ -339,7 +338,7 @@ For teaching interactive data visualisation the set of focal tools **plotly**, *
 ### Coverage of interactive techniques
 The interactive techniques discussed in Section \@ref(techniques) are not intended to be exhaustive, but they provide a powerful toolbox for applying interactive data visualisation [@Cook]. 
 
-The tables below summarise how well the set of interactive software tools, **shiny**, **plotly** and **crosstalk**, implement the interactive techniques discussed. 
+The following tables summarise how well the set of interactive software tools, **shiny**, **plotly** and **crosstalk**, implement the interactive techniques discussed. 
 
 Table \@ref(tab:techniques) examines the coverage of each package as a standalone software. For example, unless **crosstalk** is combined with **shiny** it does not have access to an active R session. Although this feature is not an interactive technique, it has been included in Table \@ref(tab:techniques) since having access to statistical software enables a two-way workflow between data analysis and plot interaction [@pipe]. As previously discussed, this enables the implementation of techniques like subset selection for analysis, but affects the ease of sharing interactive visualisations.
 
