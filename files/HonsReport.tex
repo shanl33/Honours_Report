@@ -12,11 +12,12 @@
 
 \usepackage{booktabs} % For tables
 \usepackage{graphicx}
-\usepackage{hyperref}
+%\usepackage{hyperref}
+\usepackage{url}
 \usepackage{apacite}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
-
+\setlength\parindent{0pt}
 \setlength{\oddsidemargin}{1.5cm}
 \setlength{\evensidemargin}{0cm}
 \setlength{\topmargin}{1mm}
@@ -82,15 +83,35 @@ A dissertation  submitted in partial fulfillment of the requirements for the deg
 \chapter*{Abstract}       
 \setcounter{page}{1}
 \pagestyle{headings}
-% \pagenumbering{roman}
+ \pagenumbering{gobble}
 
 \addcontentsline{toc}{chapter}{Abstract}
 
 
-The software required to implement interactive techniques in data visualisation has become readily available to statisticians with the development of web-based graphics and several open-source R packages. This paper proposes using the R packages, \textbf{plotly,} \textbf{crosstalk} and \textbf{shiny}, to teach a set of powerful techniques for interactive data visualisation. The value of applying linked brushing, identification, scaling, subset selection and tours, to reveal further insight during exploratory data analysis will be demonstrated. Outliers are quickly examined using linked brushing and identification to better understand how they are unusual. Different structures in the data are explored with interactive scaling and subset selection. Dynamic tours provide views of complex multivariate structures and linked brushing enables multiple representations of the data to be explored simultaneously and related together. The additional insights gained from applying interactive data visualisation in comparison to analysis with static plots alone, show that the set of interactive techniques and software identified is a powerful toolbox for statisticians to have.
+The software required to implement interactive techniques in data visualisation has become readily available to statisticians with the development of web-based graphics and several open-source R packages. This paper proposes using the R packages, \textbf{plotly,} \textbf{crosstalk} and \textbf{shiny}, to teach a set of powerful techniques for interactive data visualisation. The value of applying linked brushing, identification, scaling, subset selection and tours, to reveal further insight during exploratory data analysis will be demonstrated. Outliers are quickly examined using linked brushing and identification to better understand how they are unusual. Different structures in the data are explored with interactive scaling and subset selection. Dynamic tours provide views of complex multivariate structures and linked brushing enables multiple representations of the data to be explored simultaneously and related together. The additional insights gained from applying interactive data visualisation in comparison to analysis with static plots alone, show that the set of interactive techniques and software identified is a powerful toolbox for statisticians to have. 
+\vspace{2ex}
+\newline 
+For direct access to all interactive plots this paper is recommended to be read online at: \newline https://shanl33.github.io/Honours\_Report/.
 
-%For direct access to all interactive plots this paper is recommended to be read online at \href{https://shanl33.github.io/Honours_Report/}{https://shanl33.github.io/Honours_Report/}.
+\newpage
 
 
 
+%: --------------------------------------------------------------
+%:                  FRONT MATTER:  abstract,..
+% --------------------------------------------------------------
+\chapter*{Acknowledgements}    
+
+First I would like to acknowledge my supervisor, Dr Paul Murrell for his patience in sharing his expertise and in showing me how to turn a 'flood of code' into a waterfall, among many, many other things.
+\vspace{2ex}
+\newline 
+Also thank you to Sam Duncan for so carefully proof reading this paper and providing valuable feedback. (Also thanks to Frances Duncan for highly recommending his services!)
+\vspace{2ex}
+\newline 
+Lastly, I would like to thank my mum for her continued support and care.
+
+\newpage
+
+\chapter*{}
+  
 \end{document}
