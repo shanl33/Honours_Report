@@ -1,0 +1,358 @@
+
+% --------------------------------------------------------------------------------------
+%                   LATEX TEMPLATE FOR DISSERTATION (HONS)
+% --------------------------------------------------------------------------------------
+\documentclass[11pt]{book}
+
+\usepackage{amsfonts, amsmath, amssymb}  
+\usepackage{times}
+
+%\usepackage[backref=page,pagebackref=true,linkcolor = blue,citecolor = red]{hyperref}
+%\usepackage[backref=page]{backref}
+
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+
+\setlength{\oddsidemargin}{1.5cm}
+\setlength{\evensidemargin}{0cm}
+\setlength{\topmargin}{1mm}
+\setlength{\headheight}{1.36cm}
+\setlength{\headsep}{1.00cm}
+%\setlength{\textheight}{20.84cm}
+\setlength{\textheight}{19cm}
+\setlength{\textwidth}{14.5cm}
+\setlength{\marginparsep}{1mm}
+\setlength{\marginparwidth}{3cm}
+\setlength{\footskip}{2.36cm}
+
+
+\begin{document}
+\pagestyle{empty}
+
+%: ----------------------------------------------------------------------
+%:                  TITLE PAGE: name, degree,..
+% ----------------------------------------------------------------------
+
+
+\begin{center}
+
+\vspace{1cm}
+
+%%% Type the thesis title below%%%%%%%%%%%%%%%%
+{\Huge         Code-based, open-source software for teaching interactive data visualisation}
+
+\vspace{35mm} 
+
+\includegraphics[width=2cm]{logo}
+
+ \vspace{45mm}
+
+%%%%%Type Your Name Below%%%%%%%%%%%%
+{\Large       Shan-I Lee}
+
+	\vspace{1ex}
+
+Department of Statistics
+
+The University of Auckland
+
+	\vspace{5ex}
+
+ %%%%%Typing Your Supervisors Name Below%%%%%%%%%%%%
+Supervisor:            Dr Paul Murrell
+
+	\vspace{30mm}
+
+A dissertation  submitted in partial fulfillment of the requirements for the degree of BSc(Hons)  in Statistics, The University of Auckland, 2017.
+
+\end{center}
+
+
+  \newpage
+
+
+
+%: --------------------------------------------------------------
+%:                  FRONT MATTER:  abstract,..
+% --------------------------------------------------------------
+\chapter*{Abstract}       
+\setcounter{page}{1}
+\pagestyle{headings}
+% \pagenumbering{roman}
+
+\addcontentsline{toc}{chapter}{Abstract}
+
+
+The software required to implement interactive techniques in data visualisation has become readily available to statisticians with the development of web-based graphics and several open-source R packages. This paper proposes using the R packages, \textbf{plotly,} \textbf{crosstalk} and \textbf{shiny}, to teach a set of powerful techniques for interactive data visualisation. The value of applying linked brushing, identification, scaling, subset selection and tours, to reveal further insight during exploratory data analysis will be demonstrated. Outliers are quickly examined using linked brushing and identification to better understand how they are unusual. Different structures in the data are explored with interactive scaling and subset selection. Dynamic tours provide views of complex multivariate structures and linked brushing enables multiple representations of the data to be explored simultaneously and related together. The additional insights gained from applying interactive data visualisation in comparison to analysis with static plots alone, show that the set of interactive techniques and software identified is a powerful toolbox for statisticians to have.
+
+For direct access to all interactive plots this paper is recommended to be read online at \href{https://shanl33.github.io/Honours_Report/}{https://shanl33.github.io/Honours_Report/}.
+
+
+
+%: --------------------------------------------------------------
+%:                  END:  abstract
+% --------------------------------------------------------------
+
+
+
+%: ----------------------- contents ------------------------
+\setcounter{secnumdepth}{3} % organisational level that receives a numbers
+\setcounter{tocdepth}{3}    % print table of contents for level 3
+\tableofcontents            % print the table of contents
+% levels are: 0 - chapter, 1 - section, 2 - subsection, 3 - subsection
+
+
+
+%: --------------------------------------------------------------
+%:                  MAIN DOCUMENT SECTION
+% --------------------------------------------------------------
+	
+\chapter{Introduction}%    \chapter{}  = level 1, top level
+
+
+A thesis should always have an introduction.  The purpose is to describe the general subject area, state the research problem of interest, outline the main results of the thesis, and put the results in context with the wider subject area and its applications.
+
+The main body of the text must be divided into a logical scheme which  is followed consistently throughout the work.  
+ It usually starts with an introduction chapter  and ends with  a conclusion chapter. See, for example, the table of contents on page 3. 
+
+There is strict  35-page limit  for an applied mathematics dissertation,  including  the references  but excluding  appendices. 
+
+
+\section{Some Basics About LaTex } 
+
+\subsection{Equations}
+The main strength of LaTex is  mathematical typesetting.  
+
+There is a huge amount of information about LaTex on the internet.
+A helpful short manual, also included in this folder, is the file
+\verb+latex_intro.pdf+
+This document gives a lot of sample LaTex commands.  
+The file \verb+latex-howto.tex+ in this folder also contains examples of many latex commands.
+
+
+
+
+We first show  some simple examples of 
+mathematical formulae using latex typesetting.
+
+\begin{enumerate}
+\item The basic functions: $\cos(x),  \sin(x),   \ln(x) $,  (\verb+$\cos(x),\sin(x),\ln(x)$+). 
+\item Greek letters: $\alpha \beta \gamma \delta\epsilon...$ (\verb+$\alpha\beta\gamma\delta\epsilon...$+).
+\item Mathematical symbols: $\int  \oint \sum\lim\bigcup \bigcap$
+ (\verb+$\int\oint\sum\lim\bigcup\bigcap$+).
+\item Fractions: $\frac{1}{2},\frac{1}{2-x}$ (\verb+$\frac{1}{2},\frac{1}{2-x}$+).
+\end{enumerate}
+
+The following matrix 
+\begin{eqnarray}\label{eqn:matrix}
+\left[
+\begin{array}{ccc}
+	 U_{r}&     r       &   W_{r}	\\
+	   0       &	1      &  V_{x}	\\
+	   0	   &	0      &  W_{x}
+\end{array}
+\right], 
+\end{eqnarray}
+is generated using  the \verb+equarray+ environment:
+\begin{verbatim}
+\begin{eqnarray}\label{eqn:matrix}
+\left[
+\begin{array}{ccc}
+	 U_{r}& r &W_{r}\\
+	   0 &1 &V_{x}\\
+	   0&	0 & W_{x}
+\end{array}
+\right], 
+\end{eqnarray}
+\end{verbatim}
+The \verb+\label{eqn:matrix}+ command labels the equation with \verb+{eqn:matrix}+ which can 
+be referred  to somewhere else in the text by using \verb+\ref{eqn:matrix}+ or  \verb+\eqref{eqn:matrix}+.
+
+
+The command \verb+\notag+ eliminates the numbering of the first equation,
+\begin{eqnarray} \label{eqn:lambda_trace}
+\lambda^{(1)}&=&tr[T^{(1)}P],\notag  \\
+\lambda^{(2)}&=&tr[T^{(2)}P - T^{(1)}ST^{(1)}P].
+\end{eqnarray}
+\begin{verbatim}
+\begin{eqnarray} \label{eqn:lambda_trace}
+\lambda^{(1)}&=&tr[T^{(1)}P],\notag  \\
+\lambda^{(2)}&=&tr[T^{(2)}P - T^{(1)}ST^{(1)}P].
+\end{eqnarray}
+\end{verbatim}
+
+
+\subsection{Itemized lists}
+Example of an itemized list:
+\begin{itemize}
+\item muscle and fat cells remove glucose from the blood,
+\item cells use glucose for protein synthesis.
+\end{itemize}
+\begin{verbatim}
+\begin{itemize}
+\item muscle and fat cells remove glucose from the blood,
+\item cells use glucose for protein synthesis.
+\end{itemize}
+\end{verbatim}
+This can be done by an enumerated  list:
+\begin{enumerate}
+\item muscle and fat cells remove glucose from the blood,
+\item cells use glucose for protein synthesis.
+\end{enumerate}
+
+\begin{verbatim}
+\begin{enumerate}
+\item muscle and fat cells remove glucose from the blood,
+\item cells use glucose for protein synthesis.
+\end{enumerate}
+\end{verbatim}
+
+
+
+\newpage
+
+
+
+\subsection{Inserting figures}
+
+
+You may save your Matlab figures as jpg files.  Figures should  be stored in the 
+same folder as the latex files.
+For the graphicx package to work you usually need to ask latex to create a pdf file (e.g., command pdflatex or latexpdf).
+
+An example of an inserted image is given in Figure~\ref{fig:modes}.
+
+\begin{center}
+\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.6\textwidth]{modes}
+		\caption{Mode shapes}
+		\label{fig:modes}
+\end{figure}
+\end{center}
+
+
+
+
+ 
+\subsection{Tables}\label{table}
+Example of a table,
+\begin{table}[htdp]
+\centering
+\begin{tabular}{ccc} % ccc means 3 columns, all centered; alternatives are l, r
+{\bf Gene} & {\bf GeneID} & {\bf Length} \\ 
+\hline % draws a line under the column headers
+human latexin & 1234 & 14.9 kbps \\
+mouse latexin & 2345 & 10.1 kbps \\
+rat latexin   & 3456 & 9.6 kbps \\
+\end{tabular}
+\caption[title of table]{\textbf{title of table} - Overview of latexin genes.}
+\label{latexin_genes} % label for cross-links with \ref{latexin_genes}
+\end{table}
+\begin{verbatim}
+\begin{table}[htdp]
+\centering
+\begin{tabular}{ccc} 
+% ccc means 3 columns, all centered; alternatives are l, r
+{\bf Gene} & {\bf GeneID} & {\bf Length} \\ 
+\hline % draws a line under the column headers
+human latexin & 1234 & 14.9 kbps \\
+mouse latexin & 2345 & 10.1 kbps \\
+rat latexin   & 3456 & 9.6 kbps \\
+\end{tabular}
+\caption[title of table]{\textbf{title of table} - Overview of latexin genes.}
+\label{latexin_genes} % label for cross-links with \ref{latexin_genes}
+\end{table}
+\end{verbatim}
+See how to add two vertical lines in the table (Simply change \verb+{ccc}+ to \verb+{c|c|c}+)
+\begin{table}[htdp]
+\centering
+\begin{tabular}{c|c|c} % ccc means 3 columns, all centered; alternatives are l, r
+{\bf Gene} & {\bf GeneID} & {\bf Length} \\ 
+\hline % draws a line under the column headers
+human latexin & 1234 & 14.9 kbps \\
+mouse latexin & 2345 & 10.1 kbps \\
+rat latexin   & 3456 & 9.6 kbps \\
+\end{tabular}
+\caption[title of table]{\textbf{title of table} - Overview of latexin genes.}
+\label{latexin_genes2} % label for cross-links with \ref{latexin_genes}
+\end{table}
+
+
+
+\subsection{How to Refer to Equations, Sections, etc}%    \subsection{}    = level 3
+ \begin{enumerate}
+ \item References can be linked to equations, figures, tables or sections using the command 
+ \verb+\ref+:
+ Equation (\ref{eqn:lambda_trace}),  Figure~\ref{fig:modes},  Table~\ref{latexin_genes2} and Section~\ref{table}.\\
+\verb+Equation~(\ref{eqn:lambda_trace}),Figure~\ref{modes},+\\
+\verb+Table~\ref{latexin_genes2} and Section~\ref{table}.+
+
+
+\item 
+Equations can be conveniently  referred to using \verb+ \eqref+. See, for example,  Equation \eqref{eqn:lambda_trace}. \\
+\verb+Equation \eqref{eqn:lambda_trace}+\\
+Note that \verb+\eqref+ includes the round brackets by itself. 
+
+\item  Citations are in a similar way but using the command \verb+\cite+:
+
+  \cite{Salmond}, \cite{Stull}, and \cite{TandC}, 
+   or  \cite{Salmond,Stull,TandC} .
+   
+  \begin{verbatim}   
+   \cite{Salmond}, \cite{Stull}, and \cite{TandC}, 
+   or  \cite{Salmond,Stull,TandC} .
+ \end{verbatim} 
+
+There are many different styles for writing citations -- you should follow the norms for your subject are.
+
+A more advanced way to do citations is to use \verb+bibtex+.  This is a powerful tool and we encourage you to try it.  There is plenty of information about it on the web.
+
+ 
+ \end{enumerate}
+ 
+ 
+ 
+\chapter{Methodologies and analysis}
+\section{Methodologies}
+\section{Analysis}
+\chapter{Discussion }
+\section{Main results}
+\section{Discussion}
+\chapter{Conclusions}
+You may add more chapters as needed in the file.
+
+
+
+		
+			
+% --------------------------------------------------------------
+
+% --------------------------------------------------------------
+\renewcommand{\bibname}{References} % changes the header; default: Bibliography
+\begin{thebibliography}{99} 
+\addcontentsline{toc}{chapter}{References}
+
+
+\bibitem{Farge} Farge Marie, {\em Wavelet Transforms and Their Applications to Turbulence},  \\Ann. Rev. Fluid Mech. volume 24, pages 395-457, 1992.
+%ref. for an article
+\bibitem{Salmond}  Salmond Jennifer,  {\em Vertical Mixing of Ozone in the Very Stable Nocturnal Boundary Layer}, PhD Thesis, University of British Columbia, 2001.
+%ref. for a Thesis.
+\bibitem{Stull} Stull B. Ronald, {\em Introduction to Boundary Layer Meteorology}, Dordrecht; Boston: Kulwer Academic Publishers, 1988. %%%ref. for a book
+\bibitem{TandC} Torrence Christopher, Compo Gilbert P., {\em A Practical Guide to Wavelet Analysis}, Bulletin of the American Meteorological Society volume 79, pages 61-78, 1998. 
+%ref. for an article
+\end{thebibliography}
+
+
+\appendix%%% start appendices here 
+\chapter{Some extra things} 
+
+This is an optional chapter for any additional material that does not fit 
+conveniently into the body of the text (e.g., data, copies of computer programmes). 
+Note that appendices won't necessarily be marked.
+
+
+\end{document}
