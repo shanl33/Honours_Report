@@ -513,7 +513,7 @@ include_graphics("files/pcp_busy.jpg", auto_pdf=F)
 
 The positive relationships previously identified in the pairs plot, should translate to approximately horizontal lines between the parallel axes in the PCP, as opposed to sloped or 'criss-crossed' lines for negative correlation. By changing the scale of the PCP to an univariate scale, such as the standardised scale shown in Figure \@ref(fig:pcpscale), we can verify the correlation between successive achievement rates, by taking into consideration the increasing difficulty of the qualification levels as well. The parallel coordinate plots in Figure \@ref(fig:pcpscale) question whether the positive relationships hold true for Auckland schools with low achievement rates and in some decile groups. 
 
-```{r pcpscale, fig.cap="Interactively exploring the effect of scaling on a PCP. Changing the scale applied to the parallel axes reveals different aspects of the data. This interactive figure can be accessed at <https://shanl33.shinyapps.io/nceatour/>", out.width="700px"}
+```{r pcpscale, fig.cap="Interactively exploring the effect of scaling on a PCP. Changing the scale applied to the parallel axes reveals different aspects of the data. This interactive figure can be accessed at <https://shanl33.shinyapps.io/nceapcp/>.", out.width="700px"}
 # Replace with app (with legen of colour included)
 include_graphics("files/pcp_scale.jpg", auto_pdf=F)
 ```
