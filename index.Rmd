@@ -32,8 +32,6 @@ knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.align='cente
 library(bookdown)
 # For including static graphics
 library(knitr)
-# For tables
-#library(kableExtra)
 # For tidying of NCEA data
 library(tidyr) 
 library(dplyr)
@@ -357,7 +355,7 @@ Table: (\#tab:brushing) Implementing linked brushing using combinations of **shi
 | R Packages | Link<br>one-to-one | Categorical<br>brushing | Persistent<br>brushing | Brush lines | Spin and brush<br>(for tours) |
 |------------|:---------------------:|:-------------:|:-----------:|:-------------:|:-------------:|
 | Plotly+Shiny |  | Easier | Yes |  |  |
-| Plotly+Crosstalk | Yes |  | Yes |  | Yes | 
+| Plotly+Crosstalk | Easier |  | Yes |  | Yes | 
 
 The **plotly** package provides a starting point that enables the application of a variety of interactive techniques. The default settings for a **plotly** object allow for tooltip identification, scaling and filtering via the legend (where applicable). Interactive plots can be created by either converting static **ggplot2** plots to **plotly** objects, or directly using the `plot_ly` function. The **plotly** syntax is conveniently similar to **ggplot2**. Although **ggplot2** provides a more extensive system of graphics, creating interactive visualisations with the `plot_ly` function uses the **plotly.js** library more directly [@plotlyBook].
 

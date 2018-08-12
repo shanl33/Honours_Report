@@ -68,7 +68,9 @@ ncea_factor <- function(df, gp="Decile", sd.group="AKLncea") {
 ui <- fluidPage(
   inputPanel(
     selectInput("group", "Select variable", choices=as.list(colnames(nzqa.sch)[6:15]), selected="Decile"),
-    div(style="width: 600px;", sliderInput("cohort2", label="Minimum size of Year 11, 12, 13 cohorts", min=0, max=100, step=10, value=0, animate=T))
+    div(style="width: 600px;", 
+        sliderInput("cohort2", label="Minimum size of Year 11, 12, 13 cohorts", 
+                    min=0, max=100, step=10, value=0, animate=T))
   ),
   mainPanel(plotlyOutput("plots"))
 )
