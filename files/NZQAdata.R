@@ -1,10 +1,16 @@
+library(dplyr)
+library(tidyr)
+
 nzqa2016 <- read.csv("http://www.nzqa.govt.nz/assets/Studying-in-NZ/Secondary-school-and-NCEA/stats-reports/2016/Qualification-Statistics-School-2016-29032017.csv")
+# Updated data
+nzqa2017 <- read.csv("https://www.nzqa.govt.nz/assets/Studying-in-NZ/Secondary-school-and-NCEA/stats-reports/2017/Qualification-Statistics-School-2017-28032018.csv")
+
 # Drop vars that will not be used (eg. cumulative achievement)
-nzqa2016 <- nzqa2016[,-c(1,8,10)]
-names(nzqa2016) <- c("Decile", "Region", "School", "Year", "Qualification", "Achieve_participate", "Achieve_roll", "Small_sch")
-levels(nzqa2016$Qualification) <- c("L1", "L2", "L3", "UE")
+nzqa2017 <- nzqa2017[,-c(1,8,10)]
+names(nzqa2017) <- c("Decile", "Region", "School", "Year", "Qualification", "Achieve_participate", "Achieve_roll", "Small_sch")
+levels(nzqa2017$Qualification) <- c("L1", "L2", "L3", "UE")
 # Subset to use only Year 11 with Level 1, etc
-nzqa <- nzqa2016 %>% filter(((Qualification=="L1") & (Year==11)) | 
+nzqa <- nzqa2017 %>% filter(((Qualification=="L1") & (Year==11)) | 
                               ((Year==12) & (Qualification=="L2")) |
                               ((Year==13) & (Qualification=="L3")) | 
                               ((Year==13) & (Qualification=="UE"))) %>%
@@ -13,7 +19,7 @@ nzqa <- nzqa2016 %>% filter(((Qualification=="L1") & (Year==11)) |
   spread(Qualification, Achieve_participate, fill=0) %>%
   group_by(School) %>%
   summarise_at(c("L1", "L2", "L3", "UE"), sum) %>%
-  inner_join(nzqa2016[, c(1, 2, 3, 8)]) %>% # Add Decile and Region and Small_sch variables
+  inner_join(nzqa2017[, c(1, 2, 3, 8)]) %>% # Add Decile and Region and Small_sch variables
   distinct() %>% 
   filter(!((L1==0)&(L2==0)&(L3==0))) #Remove schools with 0% achievement rate for all levels
 
